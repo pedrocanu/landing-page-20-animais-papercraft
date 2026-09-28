@@ -1,7 +1,7 @@
-# 20 Animais Papercraft para Montar — Landing Page
+# Clube do Papercraft — 20 Animais Papercraft para Montar
 
 Landing page de vendas em HTML/CSS/JS puro (arquivo único, sem framework e sem
-build) para o produto digital **"20 Animais Papercraft para Montar"** — 20 moldes
+build) para o produto **"20 Animais Papercraft para Montar"**, do **Clube do Papercraft** — 20 moldes
 3D de animais em PDF, para imprimir, recortar, dobrar e montar.
 
 ## Arquivos
