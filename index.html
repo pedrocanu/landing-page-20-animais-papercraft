@@ -424,18 +424,6 @@
     box-shadow:0 10px 24px -8px rgba(37,211,102,.8);}
   .wpp.on{display:flex;}
   .wpp svg{width:27px;height:27px;fill:#fff;stroke:none;}
-  .sticky{
-    position:fixed;left:0;right:0;bottom:0;z-index:80;background:rgba(255,255,255,.97);
-    backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:9px 0;
-    transform:translateY(120%);transition:transform .25s ease;
-  }
-  .sticky.show{transform:none;}
-  .sticky .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;}
-  .sticky .p{display:flex;align-items:baseline;gap:8px;}
-  .sticky .p .old{font-size:12px;color:var(--muted-2);text-decoration:line-through;}
-  .sticky .p .now{font-family:'Baloo 2',cursive;font-weight:800;font-size:20px;color:var(--blue);}
-  .sticky .p .tg{font-size:11.5px;color:var(--muted);}
-  @media(max-width:520px){.sticky .p .tg{display:none;}.wpp{bottom:76px;}}
 
   .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease, transform .55s ease;}
   .reveal.in{opacity:1;transform:none;}
@@ -814,17 +802,6 @@
   <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.06c-.24.68-1.42 1.31-1.95 1.36-.5.05-.98.24-3.3-.69-2.78-1.1-4.55-3.95-4.69-4.14-.14-.19-1.13-1.5-1.13-2.86 0-1.36.71-2.03.96-2.31.25-.28.55-.35.73-.35.18 0 .37 0 .53.01.17.01.4-.06.62.48.24.57.8 1.97.87 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.93 1.93 1.22 2.21 1.36.28.14.44.12.6-.07.17-.19.69-.8.87-1.08.18-.28.36-.23.61-.14.25.09 1.6.75 1.87.89.28.14.46.21.53.33.07.12.07.68-.17 1.36z"/></svg>
 </a>
 
-<div class="sticky" id="sticky">
-  <div class="wrap">
-    <div class="p">
-      <span class="old" id="sticky-old"></span>
-      <span class="now" id="sticky-now"></span>
-      <span class="tg">pagamento único</span>
-    </div>
-    <a href="#" class="btn btn-blue btn-sm btn-buy-link">Quero meu kit</a>
-  </div>
-</div>
-
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     // pixel do Meta + Conversions API com o mesmo event_id (o Meta deduplica)
@@ -870,8 +847,8 @@
 
     // preços
     var now = window.PRICE_DISPLAY || '', old = window.PRICE_OLD_DISPLAY || '';
-    ['price-now','sticky-now'].forEach(function(id){ var e=document.getElementById(id); if(e) e.textContent=now; });
-    ['price-old','sticky-old'].forEach(function(id){ var e=document.getElementById(id); if(e) e.textContent=old; });
+    ['price-now'].forEach(function(id){ var e=document.getElementById(id); if(e) e.textContent=now; });
+    ['price-old'].forEach(function(id){ var e=document.getElementById(id); if(e) e.textContent=old; });
 
     // botões de compra
     var url = window.CHECKOUT_URL || '';
@@ -904,14 +881,6 @@
       entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-
-    var sticky = document.getElementById('sticky'), hero = document.getElementById('topo');
-    function toggle(){
-      if (window.scrollY > hero.offsetTop + hero.offsetHeight) { sticky.classList.add('show'); }
-      else { sticky.classList.remove('show'); }
-    }
-    window.addEventListener('scroll', toggle, { passive: true });
-    toggle();
   });
 </script>
 
